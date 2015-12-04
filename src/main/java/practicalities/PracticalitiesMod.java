@@ -6,6 +6,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import practicalities.gui.GuiHandler;
 import practicalities.items.ModItems;
+import practicalities.machine.inventoryfilter.TileInventoryFilter;
 import practicalities.machine.shippingcrate.TileShippingCrate;
 import practicalities.machine.vampiricgenerator.TileVampiricGenerator;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -23,7 +24,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(modid = PracticalitiesMod.MODID, version = PracticalitiesMod.VERSION)
 public class PracticalitiesMod {
 	public static final String MODID = "practicalities";
-	public static final String VERSION = "2.0.0-a3";
+	public static final String VERSION = "2.0.0-a4";
 	public static final String TEXTURE_BASE = "practicalities:";
 	private boolean initializedMachines;
 
@@ -61,6 +62,7 @@ public class PracticalitiesMod {
 		if (!initializedMachines) {
 			TileShippingCrate.initialize();
 			TileVampiricGenerator.initialize();
+			TileInventoryFilter.initialize();
 			initializedMachines = true;
 		}
 	}
