@@ -2,15 +2,15 @@ package practicalities;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import practicalities.gui.GuiHandler;
 import practicalities.items.ModItems;
 import practicalities.machine.inventoryfilter.TileInventoryFilter;
 import practicalities.machine.masher.TileMasher;
+import practicalities.machine.playerinterface.TilePlayerInterface;
 import practicalities.machine.shippingcrate.TileShippingCrate;
 import practicalities.machine.vampiricgenerator.TileVampiricGenerator;
-import cpw.mods.fml.common.FMLCommonHandler;
+import practicalities.network.Proxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -25,7 +25,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(modid = PracticalitiesMod.MODID, version = PracticalitiesMod.VERSION)
 public class PracticalitiesMod {
 	public static final String MODID = "practicalities";
-	public static final String VERSION = "2.0.0-a4";
+	public static final String VERSION = "2.0.0-a5";
 	public static final String TEXTURE_BASE = "practicalities:";
 	private boolean initializedMachines;
 
@@ -33,14 +33,13 @@ public class PracticalitiesMod {
 	public static PracticalitiesMod instance;
 	public static final GuiHandler guiHandler = new GuiHandler();
 
-	@SidedProxy(clientSide = "practicalities.ProxyClient", serverSide = "practicalities.Proxy")
+	@SidedProxy(clientSide = "practicalities.network.ProxyClient", serverSide = "practicalities.network.Proxy")
 	public static Proxy proxy;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigMan.init(new Configuration(event.getSuggestedConfigurationFile()));
-		MinecraftForge.EVENT_BUS.register(proxy);
-		FMLCommonHandler.instance().bus().register(proxy);
+
 		proxy.preInit();
 		initMachines();
 	}
@@ -62,6 +61,7 @@ public class PracticalitiesMod {
 	private void initMachines() {
 		if (!initializedMachines) {
 			TileShippingCrate.initialize();
+			TilePlayerInterface.initialize();
 			TileVampiricGenerator.initialize();
 			TileInventoryFilter.initialize();
 			TileMasher.initialize();
@@ -73,7 +73,6 @@ public class PracticalitiesMod {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public Item getTabIconItem() {
-			// todo: set an item
 			return ModItems.machineCore;
 		}
 	};

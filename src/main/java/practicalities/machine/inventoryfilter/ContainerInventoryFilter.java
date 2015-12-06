@@ -1,15 +1,14 @@
 package practicalities.machine.inventoryfilter;
 
-import cofh.lib.gui.slot.SlotAcceptValid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 import practicalities.gui.ContainerBase;
 import practicalities.gui.IContainerButtons;
 import practicalities.gui.IContainerField;
 import practicalities.gui.SlotRegion;
+import cofh.lib.gui.slot.SlotAcceptValid;
 
 public class ContainerInventoryFilter extends ContainerBase implements IContainerField, IContainerButtons {
 

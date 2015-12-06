@@ -16,6 +16,7 @@ public class ConfigMan
     //blocks
     public static boolean enableShippingCrate;
     public static boolean enableVampiricGenerator;
+    public static boolean enablePlayerInterface;
     public static boolean enableInventoryFilter;
     
     //items
@@ -23,7 +24,8 @@ public class ConfigMan
     public static boolean enableVoidBucket;
     public static boolean enableMatterTransporter;
     public static boolean enableSitisStick;
-    public static boolean enabledImbuedItems;
+    public static boolean enableImbuedItems;
+    public static boolean enableNetherBlade;
 
 	public static boolean enablePreChewedFood;
 
@@ -41,13 +43,15 @@ public class ConfigMan
     	enableMagnet = config.getBoolean("enableMagnet", "general", true, "");
     	enableShippingCrate = config.getBoolean("enableShippingCrate", "general", true, "");
     	enableVampiricGenerator = config.getBoolean("enableVampiricGenerator", "general", true, "");
+    	enablePlayerInterface = config.getBoolean("enablePlayerInterface", "general", true, "");
     	enableInventoryFilter = config.getBoolean("enableInventoryFilter", "general", true, "");
     	
     	//items
     	enableVoidBucket = config.getBoolean("enableVoidBucket", "general", true, "");
     	enableMatterTransporter = config.getBoolean("enableMatterTransporter", "general", true, "");
     	enableSitisStick = config.getBoolean("enableSitisStick", "general", true, "");
-    	enabledImbuedItems = config.getBoolean("enableImbuedItems", "general", true, "");
+    	enableImbuedItems = config.getBoolean("enableImbuedItems", "general", true, "");
+    	enableNetherBlade = config.getBoolean("enableNetherBlade", "general", true, "");
     	
     	enablePreChewedFood = config.getBoolean("enablePreChewedFood", "general", true, "");
 

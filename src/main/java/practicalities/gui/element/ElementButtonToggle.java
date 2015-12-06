@@ -1,4 +1,4 @@
-package practicalities.gui;
+package practicalities.gui.element;
 
 import org.lwjgl.opengl.GL11;
 
@@ -9,8 +9,8 @@ import cofh.lib.gui.element.ElementButtonBase;
 
 public class ElementButtonToggle extends ElementButtonBase {
 
-	int onU, onV, offU, offV, button, action;
-	boolean selected;
+	protected int onU, onV, offU, offV, button, action;
+	protected boolean selected;
 	
 	public boolean getSelected() {
 		return selected;

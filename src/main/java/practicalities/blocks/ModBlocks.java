@@ -8,6 +8,7 @@ import practicalities.ConfigMan;
 import practicalities.fluid.prechewedfood.BlockPreChewedFood;
 import practicalities.machine.inventoryfilter.BlockInventoryFilter;
 import practicalities.machine.masher.BlockMasher;
+import practicalities.machine.playerinterface.BlockPlayerInterface;
 import practicalities.machine.polaritynegator.BlockPolarityNegator;
 import practicalities.machine.shippingcrate.BlockShippingCrate;
 import practicalities.machine.vampiricgenerator.BlockVampiricGenerator;
@@ -20,8 +21,8 @@ public class ModBlocks {
 	public static Block inventoryFilter;
 	public static Block masher;
 	public static Block blockPreChewedFood;
-	
 	public static Fluid preChewedFood;
+	public static Block playerInterface;
 	
 	public static void init() {
 		
@@ -30,6 +31,8 @@ public class ModBlocks {
 		FluidRegistry.registerFluid(preChewedFood);
 		
 		stoneWall = new BlockDecor(Material.rock, "stonewall", 1, Block.soundTypeStone);
+		if(ConfigMan.enablePlayerInterface)
+			playerInterface = new BlockPlayerInterface();
 		
 		if(ConfigMan.enablePreChewedFood) {
 			blockPreChewedFood = new BlockPreChewedFood(preChewedFood);

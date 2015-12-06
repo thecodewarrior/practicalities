@@ -11,6 +11,7 @@ item.imbuedCore.name=Imbued Core
 item.imbuedRod.name=Imbued Rod
 item.imbuedTool.name=Imbued Tool
 item.imbuedSword.name=Imbued Sword
+item.netherBane.name=Netherbane
 
 item.machinePlate.name=Machine Plate
 
@@ -18,16 +19,22 @@ tile.shippingcrate.name=Shipping Crate
 tile.stonewall.name=Stone Wall
 tile.vampiricgenerator.name=Vampiric Generator
 tile.polarityNegator.name=Polarity Negator
+tile.playerinterface.name=Player Interface
 tile.inventoryfilter.name=Inventory Filter
 
 chat.sitis.noSky=The stick might work better out in the open
 chat.sitis.noRain=The stick doesn't really have much to do right now
 chat.sitis.clear=Rain, Rain, go away; come again another day
+chat.playerinterface.info=Bound to %s
 
 key.practicalities.magnet_toggle=Toggle Practicalities magnet
 
 tooltip.itemMagnet.flair=Suck it!
 tooltip.imbuedTool.flair=The OPness!
 tooltip.imbuedSword.flair=Watch out for the quick draw!
+tooltip.netherBane.flair=Sabre of the Moon
+
+gui.tooltip.inventoryfilter.whitelist=Whitelist
+gui.tooltip.inventoryfilter.blacklist=Blacklist
 
 death.attack.vampiricGenerator=%1$s's life was sucked dry
