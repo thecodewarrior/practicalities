@@ -69,9 +69,9 @@ public class TileMasher extends TileCoFHBase implements IFluidHandler, IInventor
 			ItemFood foodProcessing = (ItemFood)processing.getItem();
 			
 			int heal = foodProcessing.func_150905_g(processing);
-//			float saturation = foodProcessing.func_150906_h(processing);
+			float saturation = foodProcessing.func_150906_h(processing);
 			
-			int out = (int)( (heal)*100 );
+			int out = (int)( (heal+saturation)*100);
 			
 			food.decrStackSize(0, 1);
 			process_output = process_output_max = out;

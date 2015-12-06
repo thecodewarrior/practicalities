@@ -1,5 +1,6 @@
 package practicalities;
 
+import net.minecraft.launchwrapper.Launch;
 import net.minecraftforge.common.config.Configuration;
 
 public class ConfigMan
@@ -9,8 +10,10 @@ public class ConfigMan
 	 * Sure, they will take up an ID for no reason
 	 * but I feel that is an ok trade off for not having
 	 * to worry about it when making recipes
-	 */		
-		 
+	 */
+	
+	public static boolean isDev = (Boolean)Launch.blackboard.get("fml.deobfuscatedEnvironment");
+	
     private static Configuration config;
     
     //blocks

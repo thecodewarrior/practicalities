@@ -4,6 +4,7 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.UUID;
 
+import practicalities.blocks.ModBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -12,14 +13,23 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.FoodStats;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
 import cofh.core.block.TileCoFHBase;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class TilePlayerInterface extends TileCoFHBase implements IInventory {
+public class TilePlayerInterface extends TileCoFHBase implements IInventory, IFluidHandler {
 
 	private WeakReference<EntityPlayer> player;
 	private UUID uuid;
 	private String lastName;
+	
+	public FluidTank tank = new FluidTank(1000);
 	
 	private int timeout = 0;
 	
@@ -73,6 +83,23 @@ public class TilePlayerInterface extends TileCoFHBase implements IInventory {
 		} else {
 			updatePlayer(false);
 		}
+		
+		if(hasPlayer()) {
+			FoodStats f = player.get().getFoodStats();
+			if(f.getFoodLevel() < 20 && tank.getFluidAmount() > 100) {
+				tank.drain(100, true);
+				int food = 1;
+				float sat = 0;
+				
+				if(f.getSaturationLevel() < 20 && tank.getFluidAmount() > 0) {
+					FluidStack drained = tank.drain((int)( 20-f.getSaturationLevel() )*100, true);
+					sat = (float)( drained.amount/100.0 );
+				}
+				
+				f.addStats(food, sat);
+			}
+			
+		}
 	}
 	@Override
 	public boolean canUpdate() {
@@ -101,12 +128,14 @@ public class TilePlayerInterface extends TileCoFHBase implements IInventory {
 	@Override
 	public void writeToNBT(NBTTagCompound nbtTag) {
 		super.writeToNBT(nbtTag);
+		tank.writeToNBT(nbtTag);
 		writeSyncableDataToNBT(nbtTag);
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbtTag) {
 		super.readFromNBT(nbtTag);
+		tank.readFromNBT(nbtTag);
 		readSyncableDataFromNBT(nbtTag);
 	}
 	
@@ -232,5 +261,71 @@ public class TilePlayerInterface extends TileCoFHBase implements IInventory {
 	@Override
 	public boolean hasCustomInventoryName() {
 		return false;
+	}
+
+	// ***************************
+	
+//	@Override
+//	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+//		if(!hasPlayer()) return 0;
+//		if(player.get().getFoodStats().needFood()) {
+//			
+//			FoodStats fs = player.get().getFoodStats();
+//			
+//			int amtNeeded = 0;
+//			
+//			int hamNeeded = 100*( 20 - fs.getFoodLevel() );
+//			int satNeeded = (int)( 100*( 20.0 - fs.getSaturationLevel() ) );
+//			
+//			amtNeeded = hamNeeded+satNeeded;
+//			
+//			amtNeeded = Math.min(amtNeeded, resource.amount);
+//			
+//			if(doFill) {
+//				int amtHam = Math.min(hamNeeded, amtNeeded)/100;
+//				float amtSat = Math.min(satNeeded, (amtNeeded-(amtHam*100)))/100;
+//				
+//				fs.addStats(amtHam, amtSat);
+//			}
+//			return amtNeeded;
+////			amtNeeded = hamPointsNeeded*100 + saturationNeeded*100;
+//			
+//		}
+//		return 0;
+//	}
+
+	@Override
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+		if(doFill && tank.getFluidAmount() != tank.getCapacity()) markDirty();
+		return tank.fill(resource, doFill);
+	}
+
+	@Override
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+		return null;
+//		if(doDrain && tank.getFluidAmount() > 0) markFilthy();
+//		return tank.drain(Math.min(tank.getCapacity(), resource.amount), doDrain);
+	}
+
+	@Override
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+		return null;
+//		if(doDrain && tank.getFluidAmount() > 0) markFilthy();
+//		return tank.drain(Math.min(tank.getCapacity(), maxDrain), doDrain);
+	}
+
+	@Override
+	public boolean canFill(ForgeDirection from, Fluid fluid) {
+		return true; //fluid != null && fluid.getName() == ModBlocks.preChewedFood.getName();
+	}
+
+	@Override
+	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+		return false;
+	}
+
+	@Override
+	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+		return new FluidTankInfo[] { tank.getInfo() };
 	}
 }

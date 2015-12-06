@@ -1,9 +1,12 @@
 package practicalities.network;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
 import org.lwjgl.input.Keyboard;
 
+import practicalities.ConfigMan;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -38,4 +41,12 @@ public class ProxyClient extends Proxy{
         	Net.channel.sendToServer(new ToggleMagnetPacket());
         }
     }
+	
+	@SubscribeEvent
+	public void drawDebug(RenderGameOverlayEvent.Text event) {
+		if(!ConfigMan.isDev) return;
+		if(!Minecraft.getMinecraft().gameSettings.showDebugInfo) return;
+		
+		event.left.add("Saturation:" + Minecraft.getMinecraft().thePlayer.getFoodStats().getSaturationLevel());
+	}
 }
