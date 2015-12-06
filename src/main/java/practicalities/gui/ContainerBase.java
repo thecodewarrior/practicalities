@@ -89,28 +89,6 @@ public abstract class ContainerBase extends Container {
 			return null;
 		}
 
-//		ItemStack stack = null;
-//		Slot slot = (Slot) inventorySlots.get(slotIndex);
-//
-//		if (slot != null && slot.getHasStack()) {
-//			ItemStack stackInSlot = slot.getStack();
-//			stack = stackInSlot.copy();
-//
-//			if (!performMerge(player, slotIndex, stackInSlot)) {
-//				return null;
-//			}
-//
-//			if (stackInSlot.stackSize <= 0) {
-//				slot.putStack((ItemStack) null);
-//			} else {
-//				slot.putStack(stackInSlot);
-//			}
-//
-//			if (stackInSlot.stackSize == stack.stackSize) {
-//				return null;
-//			}
-//			slot.onPickupFromSlot(player, stackInSlot);
-//		}
 		return SlotRegion.shiftClick(this, slotIndex, player, regions);
 	}
 

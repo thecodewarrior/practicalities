@@ -88,19 +88,18 @@ public class TilePlayerInterface extends TileCoFHBase implements IInventory, IFl
 			FoodStats f = player.get().getFoodStats();
 			if(f.getFoodLevel() < 20 && tank.getFluidAmount() > 100) {
 				tank.drain(100, true);
-				int food = 1;
-				float sat = 0;
+				f.addStats(1, 0.5f);
 				
-				if(f.getSaturationLevel() < 20 && tank.getFluidAmount() > 0) {
-					FluidStack drained = tank.drain((int)( 20-f.getSaturationLevel() )*100, true);
-					sat = (float)( drained.amount/100.0 );
-				}
-				
-				f.addStats(food, sat);
+//				if(f.getSaturationLevel() < 20 && tank.getFluidAmount() > 0) {
+//					FluidStack drained = tank.drain((int)( 20-f.getSaturationLevel() )*100, true);
+//					sat = (float)( drained.amount/100.0 );
+//				}
+//				
 			}
 			
 		}
 	}
+	
 	@Override
 	public boolean canUpdate() {
 		return true;

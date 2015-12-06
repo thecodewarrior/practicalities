@@ -51,4 +51,8 @@ public class ModBlocks {
 		if(ConfigMan.enableMagnet)
 			polarityNegator = new BlockPolarityNegator();
 	}
+	
+	public static void postInit() {
+		
+	}
 }

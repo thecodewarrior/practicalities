@@ -47,6 +47,7 @@ public class PracticalitiesMod {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, guiHandler);
+		BucketHandler.init();
 	}
 
 	@EventHandler

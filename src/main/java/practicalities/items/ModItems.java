@@ -1,11 +1,21 @@
 package practicalities.items;
 
+import java.util.List;
+
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemBucket;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.util.EnumHelper;
 import practicalities.ConfigMan;
+import practicalities.PracticalitiesMod;
+import practicalities.blocks.ModBlocks;
 import practicalities.items.filtercard.ItemFilterCard;
 import practicalities.items.netherbane.ItemNetherbane;
-import net.minecraftforge.common.util.EnumHelper;
 
 public class ModItems {
 	public static final ToolMaterial imbuedToolMaterial =
@@ -21,6 +31,8 @@ public class ModItems {
 
 	// tools
 	public static Item voidBucket;
+	public static Item bucketPreChewedFood;
+	
 	public static Item matterTransporter;
 	public static Item magnet;
 	public static Item sitisStick;
@@ -70,5 +82,22 @@ public class ModItems {
 
 		// other
 		filterCard = new ItemFilterCard();
+	}
+	
+	public static void postInit() {
+		if(ConfigMan.enablePreChewedFood) {
+			bucketPreChewedFood = new ItemBucket(ModBlocks.blockPreChewedFood) {
+				@SuppressWarnings({ "unchecked", "rawtypes" })
+				@Override
+				public void addInformation(ItemStack p_77624_1_,
+						EntityPlayer p_77624_2_, List list,
+						boolean p_77624_4_) {
+					super.addInformation(p_77624_1_, p_77624_2_, list, p_77624_4_);
+					list.add(StatCollector.translateToLocal("tooltip.bucketPreChewedFood.flair"));
+				}
+			};
+			bucketPreChewedFood.setUnlocalizedName("bucketPreChewedFood").setContainerItem(Items.bucket).setTextureName(PracticalitiesMod.TEXTURE_BASE + "bucket_preChewedFood");
+			GameRegistry.registerItem(bucketPreChewedFood, "bucket_preChewedFood");
+		}
 	}
 }

@@ -19,6 +19,8 @@ public class Proxy {
 	public void preInit() {
 		ModItems.init();
 		ModBlocks.init();
+		ModItems.postInit();
+		ModBlocks.postInit();
 		Net.init();
 
 	}

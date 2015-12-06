@@ -24,7 +24,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TileMasher extends TileCoFHBase implements IFluidHandler, IInventory, IEnergyReceiver{
 
-	public int ENERGY_PER_MB = 10;
+	public double ENERGY_PER_MB = 0.5;
 	public int MB_PER_TICK = 10;
 	
 	public int process_output_max; // start beyond the process time so it doesn't process when it's first loaded
@@ -69,9 +69,9 @@ public class TileMasher extends TileCoFHBase implements IFluidHandler, IInventor
 			ItemFood foodProcessing = (ItemFood)processing.getItem();
 			
 			int heal = foodProcessing.func_150905_g(processing);
-			float saturation = foodProcessing.func_150906_h(processing);
+//			float saturation = foodProcessing.func_150906_h(processing);
 			
-			int out = (int)( (heal+saturation)*100);
+			int out = heal*100;
 			
 			food.decrStackSize(0, 1);
 			process_output = process_output_max = out;
@@ -81,7 +81,7 @@ public class TileMasher extends TileCoFHBase implements IFluidHandler, IInventor
 		if(process_output > 0) {
 			int possibleFill = tank.fill(new FluidStack(ModBlocks.preChewedFood, Math.min(process_output, 10)), false);
 			if(energy.getEnergyStored() >= possibleFill*ENERGY_PER_MB) {
-				energy.extractEnergy(possibleFill*ENERGY_PER_MB, false);
+				energy.extractEnergy( (int)( possibleFill *ENERGY_PER_MB ), false);
 				process_output -= tank.fill(new FluidStack(ModBlocks.preChewedFood, Math.min(process_output, 10)), true);
 			}
 		}
