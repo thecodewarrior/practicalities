@@ -25,6 +25,8 @@ public class ConfigMan
     public static boolean enableSitisStick;
     public static boolean enabledImbuedItems;
 
+	public static boolean enablePreChewedFood;
+
     public static void init(Configuration configuration)
     {
         config = configuration;
@@ -46,6 +48,9 @@ public class ConfigMan
     	enableMatterTransporter = config.getBoolean("enableMatterTransporter", "general", true, "");
     	enableSitisStick = config.getBoolean("enableSitisStick", "general", true, "");
     	enabledImbuedItems = config.getBoolean("enableImbuedItems", "general", true, "");
+    	
+    	enablePreChewedFood = config.getBoolean("enablePreChewedFood", "general", true, "");
+
     	
     }
 }

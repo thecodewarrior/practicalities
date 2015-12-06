@@ -5,7 +5,6 @@ import cofh.lib.util.helpers.InventoryHelper;
 import cofh.lib.util.helpers.MathHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -16,6 +15,10 @@ import net.minecraft.item.ItemStack;
 //todo: remove this once CoFHLib ships with it.
 public abstract class ContainerBase extends Container {
 
+	@SuppressWarnings("unused")
+	protected SlotRegion mainInv, hotbar;
+	private SlotRegion[] regions;
+	
 	public ContainerBase() {
 
 	}
@@ -28,7 +31,9 @@ public abstract class ContainerBase extends Container {
 	}
 
 	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
-
+		
+		int firstIndex = this.inventorySlots.size();
+		
 		int yOff = getPlayerInventoryVerticalOffset();
 		int xOff = getPlayerInventoryHorizontalOffset();
 		for (int i = 0; i < 3; i++) {
@@ -40,10 +45,17 @@ public abstract class ContainerBase extends Container {
 		for (int i = 0; i < 9; i++) {
 			addSlotToContainer(new Slot(inventoryPlayer, i, xOff + i * 18, yOff + 58));
 		}
+		
+		mainInv = new SlotRegion("mainInventory", firstIndex + 0,  firstIndex + 26);
+		hotbar  = new SlotRegion("hotbar",        firstIndex + 27, firstIndex + 35);
 	}
 
 	protected abstract int getSizeInventory();
 
+	protected void setShiftClickRegions(SlotRegion... regions) {
+		this.regions = regions;
+	}
+	
 	protected boolean supportsShiftClick(EntityPlayer player, int slotIndex) {
 
 		return supportsShiftClick(slotIndex);
@@ -69,7 +81,7 @@ public abstract class ContainerBase extends Container {
 		}
 		return mergeItemStack(stack, 0, invBase, true);
 	}
-
+	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
 
@@ -77,29 +89,29 @@ public abstract class ContainerBase extends Container {
 			return null;
 		}
 
-		ItemStack stack = null;
-		Slot slot = (Slot) inventorySlots.get(slotIndex);
-
-		if (slot != null && slot.getHasStack()) {
-			ItemStack stackInSlot = slot.getStack();
-			stack = stackInSlot.copy();
-
-			if (!performMerge(player, slotIndex, stackInSlot)) {
-				return null;
-			}
-
-			if (stackInSlot.stackSize <= 0) {
-				slot.putStack((ItemStack) null);
-			} else {
-				slot.putStack(stackInSlot);
-			}
-
-			if (stackInSlot.stackSize == stack.stackSize) {
-				return null;
-			}
-			slot.onPickupFromSlot(player, stackInSlot);
-		}
-		return stack;
+//		ItemStack stack = null;
+//		Slot slot = (Slot) inventorySlots.get(slotIndex);
+//
+//		if (slot != null && slot.getHasStack()) {
+//			ItemStack stackInSlot = slot.getStack();
+//			stack = stackInSlot.copy();
+//
+//			if (!performMerge(player, slotIndex, stackInSlot)) {
+//				return null;
+//			}
+//
+//			if (stackInSlot.stackSize <= 0) {
+//				slot.putStack((ItemStack) null);
+//			} else {
+//				slot.putStack(stackInSlot);
+//			}
+//
+//			if (stackInSlot.stackSize == stack.stackSize) {
+//				return null;
+//			}
+//			slot.onPickupFromSlot(player, stackInSlot);
+//		}
+		return SlotRegion.shiftClick(this, slotIndex, player, regions);
 	}
 
 	@SuppressWarnings("unchecked")

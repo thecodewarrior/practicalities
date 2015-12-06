@@ -13,7 +13,7 @@ import cofh.lib.gui.slot.SlotAcceptValid;
 public class ContainerShippingCrate extends ContainerBase {
 
 	private TileShippingCrate shippingCrate;
-	private SlotRegion mainInv, hotbar, crate, card;
+	private SlotRegion crate, card;
 	
 	public ContainerShippingCrate(InventoryPlayer player, TileShippingCrate shippingCrate) {
 		this.shippingCrate = shippingCrate;
@@ -32,9 +32,6 @@ public class ContainerShippingCrate extends ContainerBase {
 		// filter slot
 		Slot cardSlot = this.addSlotToContainer(new SlotAcceptAssignable(shippingCrate, shippingCrate.getFilterSlotIndex(), 152, 5, ItemFilterCard.class));
 		
-		mainInv = new SlotRegion("mainInventory", 0, 26);
-		hotbar  = new SlotRegion("hotbar", 27, 35);
-		
 		SlotRegion[] cols = new SlotRegion[9];
 		for (int i = 0; i < indexColumns.length; i++) {
 			int[] column = indexColumns[i];
@@ -48,6 +45,8 @@ public class ContainerShippingCrate extends ContainerBase {
 		mainInv.addShiftTargets(card, crate, hotbar);
 		crate.addShiftTargets(mainInv, hotbar);
 		card.addShiftTargets(hotbar, mainInv);
+		
+		setShiftClickRegions(card, crate, mainInv, hotbar);
 	}
 	
 	
@@ -65,16 +64,6 @@ public class ContainerShippingCrate extends ContainerBase {
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		return true;
-	}
-	
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {		
-		
-		if (!supportsShiftClick(player, slotIndex)) {
-			return null;
-		}
-
-		return SlotRegion.shiftClick(this, slotIndex, player, card, mainInv, hotbar, crate);
 	}
 
 }

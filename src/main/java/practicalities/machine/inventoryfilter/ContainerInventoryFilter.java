@@ -15,21 +15,21 @@ public class ContainerInventoryFilter extends ContainerBase implements IContaine
 
 	private TileInventoryFilter tile;
 	private IInventory inv;
-	private SlotRegion mainInv, hotbar, card;
+	private SlotRegion card;
 
 	public ContainerInventoryFilter(InventoryPlayer player, TileInventoryFilter tile) {
 		this.tile = tile;
 		bindPlayerInventory(player);
 		Slot cardSlot;
-		addSlotToContainer(cardSlot = new SlotAcceptValid(inv = tile.getFilterInventory(), 0, 102, 10));
+		addSlotToContainer(cardSlot = new SlotAcceptValid(inv = tile.filterCard, 0, 102, 10));
 		
-		mainInv = new SlotRegion("mainInventory", 0, 26);
-		hotbar  = new SlotRegion("hotbar", 27, 35);
 		card = new SlotRegion("filterCard", new int[] { cardSlot.slotNumber });
 		
 		hotbar.addShiftTargets(card, mainInv);
 		mainInv.addShiftTargets(card, hotbar);
 		card.addShiftTargets(hotbar, mainInv);
+		
+		setShiftClickRegions(card, mainInv, hotbar);
 	}
 	
 	@Override
@@ -70,13 +70,13 @@ public class ContainerInventoryFilter extends ContainerBase implements IContaine
 		tile.markFilthy();
 	}
 	
-	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
-		if (!supportsShiftClick(player, slotIndex)) {
-			return null;
-		}
-
-		return SlotRegion.shiftClick(this, slotIndex, player, card, mainInv, hotbar);
-	}
+//	@Override
+//	public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
+//		if (!supportsShiftClick(player, slotIndex)) {
+//			return null;
+//		}
+//
+//		return SlotRegion.shiftClick(this, slotIndex, player, card, mainInv, hotbar);
+//	}
 
 }

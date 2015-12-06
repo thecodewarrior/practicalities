@@ -21,7 +21,7 @@ public class SlotRegion {
 	 * @param name
 	 * @param slots
 	 */
-	public SlotRegion(String name, int[] slots) {
+	public SlotRegion(String name, int... slots) {
 		this.name = name;
 		this.slots = slots;
 	}
