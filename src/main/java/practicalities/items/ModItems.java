@@ -2,20 +2,23 @@ package practicalities.items;
 
 import java.util.List;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemBucket;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidContainerRegistry.FluidContainerData;
+import net.minecraftforge.fluids.FluidStack;
 import practicalities.ConfigMan;
 import practicalities.PracticalitiesMod;
 import practicalities.blocks.ModBlocks;
 import practicalities.items.filtercard.ItemFilterCard;
 import practicalities.items.netherbane.ItemNetherbane;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModItems {
 	public static final ToolMaterial imbuedToolMaterial =
@@ -98,6 +101,7 @@ public class ModItems {
 			};
 			bucketPreChewedFood.setUnlocalizedName("bucketPreChewedFood").setContainerItem(Items.bucket).setTextureName(PracticalitiesMod.TEXTURE_BASE + "bucket_preChewedFood");
 			GameRegistry.registerItem(bucketPreChewedFood, "bucket_preChewedFood");
+			FluidContainerRegistry.registerFluidContainer(new FluidContainerData(new FluidStack(ModBlocks.preChewedFood, 1000), new ItemStack(bucketPreChewedFood), new ItemStack(Items.bucket)));
 		}
 	}
 }
