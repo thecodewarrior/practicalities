@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import practicalities.ConfigMan;
 import practicalities.items.ItemCraftingBase;
+import practicalities.items.ItemGuide;
 import practicalities.items.ItemImbuedSword;
 import practicalities.items.ItemImbuedTool;
 import practicalities.items.ItemMagnet;
@@ -46,6 +47,7 @@ public class ModItems {
 	// other
 	public static Item filterCard;
 	public static Item blockFakeTorch;
+	public static Item practicalGuide;
 	
 	public static void init(){
 		// tools
@@ -80,5 +82,6 @@ public class ModItems {
 
 		// other
 		filterCard = new ItemFilterCard();
+		practicalGuide = new ItemGuide();
 	}
 }

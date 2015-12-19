@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class BlockFakeTorch extends BlockTorch {
 	
 	public BlockFakeTorch() {
-		GameRegistry.registerBlock(this, PracticalitiesMod.TEXTURE_BASE + "faketorch");
+		GameRegistry.registerBlock(this, "faketorch");
 	}
 	
 	@Override
