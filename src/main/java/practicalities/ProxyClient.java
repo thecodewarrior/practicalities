@@ -9,7 +9,10 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringTranslate;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import practicalities.lib.util.AdvancedLangLoader;
+import practicalities.lib.util.obj.OBJLoader;
+import practicalities.registers.BlockRegister;
 import practicalities.registers.GuideRegister;
 import practicalities.registers.ItemRegister;
 
@@ -21,11 +24,14 @@ public class ProxyClient extends ProxyCommon implements IResourceManagerReloadLi
 		registerRenders();
 		GuideRegister.init();
 		( (IReloadableResourceManager)Minecraft.getMinecraft().getResourceManager() ).registerReloadListener(this);
+		ModelLoaderRegistry.registerLoader(OBJLoader.instance);
+		OBJLoader.instance.addDomain(PracticalitiesMod.MODID);
 	}
 	
 	@Override
 	public void registerRenders() {
 		ItemRegister.registerRenders();
+		BlockRegister.registerRenders();
 	}
 
 	@Override

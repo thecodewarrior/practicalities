@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import practicalities.helpers.ItemHelpers;
-import practicalities.lib.server.IItemGui;
+import practicalities.lib.common.IItemGui;
 
 public class GuiHandler implements IGuiHandler {
 

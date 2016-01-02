@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import practicalities.PracticalitiesMod;
 import practicalities.book.gui.GuiGuide;
 import practicalities.helpers.ItemHelpers;
-import practicalities.lib.server.IItemGui;
+import practicalities.lib.common.IItemGui;
 import practicalities.registers.GuiHandler;
 
 public class ItemPracticalGuide extends ItemBase implements IItemGui {

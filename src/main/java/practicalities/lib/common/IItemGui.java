@@ -1,4 +1,4 @@
-package practicalities.lib.server;
+package practicalities.lib.common;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

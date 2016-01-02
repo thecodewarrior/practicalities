@@ -4,12 +4,12 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import practicalities.items.netherbane.EntityNetherbane;
+import practicalities.lib.util.Utils;
+import practicalities.registers.BlockRegister;
 import practicalities.registers.ItemRegister;
 import practicalities.registers.RecipeRegister;
 
@@ -17,7 +17,7 @@ public class ProxyCommon {
 
 	public void preInit() {
 		ItemRegister.init();
-		
+		BlockRegister.init();
 	}
 
 	public void init() {
@@ -38,8 +38,7 @@ public class ProxyCommon {
 	}
 	
 	public void registerTickHandlers() {
-		MinecraftForge.EVENT_BUS.register(this);
-		FMLCommonHandler.instance().bus().register(this);
+		Utils.registerEventHandler(this);
 	}
 	
 	/*Events*/

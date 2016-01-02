@@ -21,6 +21,7 @@ import practicalities.items.ItemImbuedTool;
 import practicalities.items.ItemMagnet;
 import practicalities.items.ItemMatterTransporter;
 import practicalities.items.ItemPracticalGuide;
+import practicalities.items.ItemQuantumLinker;
 import practicalities.items.ItemSitisStick;
 import practicalities.items.ItemVoidBucket;
 import practicalities.items.netherbane.ItemNetherbane;
@@ -44,6 +45,7 @@ public class ItemRegister {
 	public static Item imbuedSword;
 	public static Item netherbane;
 	public static Item hamCheese;
+	public static Item quantumLinker;
 	
 	public static void init() {
 		magnet = new ItemMagnet();
@@ -54,8 +56,9 @@ public class ItemRegister {
 		imbuedTool = new ItemImbuedTool();
 		imbuedSword = new ItemImbuedSword();
 		netherbane = new ItemNetherbane();
-		hamCheese= new ItemFood(10, 1f, true).setUnlocalizedName("hamCheese").setCreativeTab(PracticalitiesMod.tab);
+		hamCheese = new ItemFood(10, 1f, true).setUnlocalizedName("hamCheese").setCreativeTab(PracticalitiesMod.tab);
 		GameRegistry.registerItem(hamCheese, "hamCheese");
+		quantumLinker = new ItemQuantumLinker();
 		
 		craftingPieces = new ItemCraftingPiece();
 		craftingPieces.addItem("machineCore");
@@ -64,12 +67,11 @@ public class ItemRegister {
 		craftingPieces.addItem("imbuedRod");
 		craftingPieces.addItem("magneticNorth");
 		craftingPieces.addItem("magneticSouth");
-
 	}
 
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
-		Logger.info("Registering Items");
+		Logger.info("Registering Item Renderers");
 
 		for (int i = 0; i < craftingPieces.subItemList.size(); i++) {
 			registerRender(craftingPieces, i, true);
@@ -80,6 +82,7 @@ public class ItemRegister {
 		registerRender((ItemBase) matterTransporter);
 		registerRender((ItemBase) practicalGuide);
 		registerRender((ItemBase) sitisStick);
+		registerRender((ItemBase) quantumLinker);
 		registerRender(imbuedTool,0,false);
 		registerRender(imbuedSword,0,false);
 		registerRender(netherbane,0,false);

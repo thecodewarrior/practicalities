@@ -87,9 +87,7 @@ public class AdvancedLangLoader {
 				if(line.charAt(0) == '}') {
 					if(isAddingVars) {
 						isAddingVars = false;
-					}
-						
-					if(region.isEmpty()) {
+					} else if(region.isEmpty()) {
 						Logger.error("[Advanced Lang Loader] Ignoring unexpected close bracket: line %d", lineNum);
 					} else {
 						region.pop();
