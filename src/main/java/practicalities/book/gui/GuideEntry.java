@@ -1,10 +1,9 @@
 package practicalities.book.gui;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import practicalities.book.GuideStateManager;
 import practicalities.helpers.GuiHelper;
 import practicalities.helpers.ItemHelpers;

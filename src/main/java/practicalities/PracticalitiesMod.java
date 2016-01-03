@@ -13,6 +13,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import practicalities.lib.common.PistonListenerHandler;
+import practicalities.lib.util.Utils;
+import practicalities.quantumNetwork.QuantumRegistry;
 import practicalities.registers.GuiHandler;
 import practicalities.registers.ItemRegister;
 
@@ -22,7 +25,7 @@ public class PracticalitiesMod {
 	public static final String MODNAME = "Practicalities";
 	public static final String VERSION = "2.0.0-b4";
 	public static final String TEXTURE_BASE = MODID + ":";
-
+	
 	@Instance(PracticalitiesMod.MODID)
 	public static PracticalitiesMod instance;
 	
@@ -35,6 +38,8 @@ public class PracticalitiesMod {
 	public void preInit(FMLPreInitializationEvent event) {
 		proxy.preInit();
 		ConfigMan.init(new Configuration(event.getSuggestedConfigurationFile()));
+		Utils.registerEventHandler(PistonListenerHandler.instance);
+		Utils.registerEventHandler(QuantumRegistry.INSTANCE);
 	}
 
 	@EventHandler

@@ -6,10 +6,6 @@ import javax.vecmath.Vector3f;
 import javax.vecmath.Vector4f;
 
 import net.minecraftforge.client.model.TRSRTransformation;
-import practicalities.lib.util.obj.parser.Face;
-import practicalities.lib.util.obj.parser.Normal;
-import practicalities.lib.util.obj.parser.TextureCoordinate;
-import practicalities.lib.util.obj.parser.Vertex;
 
 public class Face
 {

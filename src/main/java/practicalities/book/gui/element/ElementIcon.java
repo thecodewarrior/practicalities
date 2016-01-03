@@ -1,7 +1,6 @@
 package practicalities.book.gui.element;
 
 import net.minecraft.util.ResourceLocation;
-import practicalities.Logger;
 import practicalities.lib.client.gui.GuiElement;
 import practicalities.lib.client.gui.ScreenBase;
 

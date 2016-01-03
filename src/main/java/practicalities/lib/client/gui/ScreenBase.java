@@ -6,15 +6,14 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
-
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
-
 import practicalities.Logger;
 
 public class ScreenBase extends GuiScreen {

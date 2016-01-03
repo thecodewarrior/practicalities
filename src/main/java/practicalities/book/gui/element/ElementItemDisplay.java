@@ -2,7 +2,6 @@ package practicalities.book.gui.element;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import practicalities.helpers.GuiHelper;
 import practicalities.lib.client.gui.GuiElement;

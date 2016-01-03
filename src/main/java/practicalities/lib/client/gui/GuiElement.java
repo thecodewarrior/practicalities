@@ -2,10 +2,10 @@ package practicalities.lib.client.gui;
 
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
 
 public abstract class GuiElement {
 	protected ScreenBase gui;

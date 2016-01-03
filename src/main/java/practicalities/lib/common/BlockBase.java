@@ -3,10 +3,9 @@ package practicalities.lib.common;
 import java.util.ArrayList;
 import java.util.List;
 
-import akka.dispatch.sysmsg.Create;
 import net.minecraft.block.Block;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -59,6 +58,10 @@ public abstract class BlockBase extends Block {
 		setUnlocalizedName(name);
 		setCreativeTab(BlockBase.currentTab);
 		
+		IBlockState s = this.blockState.getBaseState();
+		setupStates(s);
+		setDefaultState(s);
+		
 		if(itemClass == null) {
 			GameRegistry.registerBlock(this, name);
 		} else {
@@ -67,6 +70,8 @@ public abstract class BlockBase extends Block {
 		
 		BlockRenderQueue.add(this);
 	}
+	
+	public void setupStates(IBlockState state) {}
 	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockModel() {
