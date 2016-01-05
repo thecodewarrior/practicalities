@@ -70,6 +70,7 @@ public class BlockQuantumComparator extends BlockFacingBase {
 		
 		String interfaceLoc = new BlockLocation((World)ourWorldIn, ourPos.offset(facing)).getString();
 		String link = QuantumRegistry.interfaceLinks.get(interfaceLoc);
+		if(link == null) return 0;
 		BlockLocation bound = new BlockLocation( link );
 		
 		World world = bound.getWorld();

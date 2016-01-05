@@ -7,6 +7,7 @@ import practicalities.Logger;
 import practicalities.PracticalitiesMod;
 import practicalities.blocks.machine.quantumBinding.BlockQuantumBinding;
 import practicalities.blocks.machine.quantumInterface.BlockQuantumComparator;
+import practicalities.blocks.machine.quantumInterface.BlockQuantumDissolver;
 import practicalities.blocks.machine.quantumInterface.BlockQuantumInterface;
 import practicalities.lib.common.BlockBase;
 
@@ -16,12 +17,14 @@ public class BlockRegister {
 	public static Block quantumInterface;
 
 	public static Block quantumComparator;
+	public static Block quantumDissolver;
 
 	public static void init() {
 		BlockBase.currentTab = PracticalitiesMod.tab;
 		quantumBinding = new BlockQuantumBinding();
 		quantumInterface = new BlockQuantumInterface();
 		quantumComparator = new BlockQuantumComparator();
+		quantumDissolver = new BlockQuantumDissolver();
 	}
 	
 	@SideOnly(Side.CLIENT)

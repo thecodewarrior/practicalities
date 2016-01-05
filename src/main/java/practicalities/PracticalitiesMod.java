@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import practicalities.lib.common.DropCapture;
 import practicalities.lib.common.PistonListenerHandler;
 import practicalities.lib.util.Utils;
 import practicalities.quantumNetwork.QuantumRegistry;
@@ -40,6 +41,7 @@ public class PracticalitiesMod {
 		ConfigMan.init(new Configuration(event.getSuggestedConfigurationFile()));
 		Utils.registerEventHandler(PistonListenerHandler.instance);
 		Utils.registerEventHandler(QuantumRegistry.INSTANCE);
+		Utils.registerEventHandler(DropCapture.instance);
 	}
 
 	@EventHandler
