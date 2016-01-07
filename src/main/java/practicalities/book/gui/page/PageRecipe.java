@@ -3,7 +3,7 @@ package practicalities.book.gui.page;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import practicalities.Logger;
+import practicalities.Log;
 import practicalities.PracticalitiesMod;
 import practicalities.book.GuideStateManager;
 import practicalities.book.gui.GuiGuide;
@@ -61,7 +61,7 @@ public class PageRecipe extends PageInEntry {
 		} else if(items.length-1 == 1) {
 			matrix.items[4] = items[0];
 		} else {
-			Logger.warning("INVALID RECIPE LENGTH! Length: %d", items.length-1);
+			Log.warn("INVALID RECIPE LENGTH! Length: %d", items.length-1);
 		}
 		
 	}

@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import practicalities.Logger;
+import practicalities.Log;
 import practicalities.PracticalitiesMod;
 
 public final class ItemHelpers {
@@ -67,7 +67,7 @@ public final class ItemHelpers {
 		ResourceLocation resourcelocation = new ResourceLocation(str);
         Item item = (Item)Item.itemRegistry.getObject(resourcelocation);
 		if(item == null) {
-			Logger.warning("ITEM NOT FOUND, RETURNING NULL! '%s'", str);
+			Log.warn("ITEM NOT FOUND, RETURNING NULL! '%s'", str);
 		}
 		return item;
 	}
@@ -88,12 +88,12 @@ public final class ItemHelpers {
 			nbtbase = JsonToNBT.getTagFromJson(str);
 		} catch (NBTException e) {
 			
-			Logger.warning("ERROR LOADING NBT TAG! Error: '%s' Json: '%s'", e.getMessage(), str);
+			Log.warn("ERROR LOADING NBT TAG! Error: '%s' Json: '%s'", e.getMessage(), str);
 			return null;
 		}
 
 		if (!(nbtbase instanceof NBTTagCompound)) {
-			Logger.warning("INVALID NBT TAG! Json: '%s'", str);
+			Log.warn("INVALID NBT TAG! Json: '%s'", str);
 			return null;
 		}
 		

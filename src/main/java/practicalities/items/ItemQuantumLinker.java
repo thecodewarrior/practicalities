@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import practicalities.Logger;
+import practicalities.Log;
 import practicalities.lib.common.BlockLocation;
 import practicalities.lib.util.Utils;
 import practicalities.quantumNetwork.IQuantumBindable;
@@ -65,7 +65,7 @@ public class ItemQuantumLinker extends ItemBase {
 		tag.setBoolean("isBound", true);
 		tag.setString("bound", Utils.sterilizeLocation(worldIn, pos));
 		
-		Logger.info("Bound to: %s", tag.getString("bound"));
+		Log.info("Bound to: %s", tag.getString("bound"));
 		return true;
 	}
 

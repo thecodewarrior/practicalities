@@ -14,7 +14,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import practicalities.Logger;
+import practicalities.Log;
 
 public class ScreenBase extends GuiScreen {
 	public int guiLeft = 0, guiTop = 0, xSize = 0, ySize = 0;
@@ -102,7 +102,7 @@ public class ScreenBase extends GuiScreen {
 		try {
 			super.keyTyped(paramChar, paramInt);
 		} catch (IOException e) {
-			Logger.warning("Um. the keyTyped method threw an IOException. Why? I don't know.");
+			Log.warn("Um. the keyTyped method threw an IOException. Why? I don't know.");
 			e.printStackTrace();// Why in the world would typing a key throw an IOException. I have no idea.
 		}
 	}
@@ -131,7 +131,7 @@ public class ScreenBase extends GuiScreen {
 		try {
 			super.handleMouseInput();
 		} catch (IOException e) {
-			Logger.warning("Um. the handleMouseInput method threw an IOException. Why? I don't know.");
+			Log.warn("Um. the handleMouseInput method threw an IOException. Why? I don't know.");
 			e.printStackTrace();// Why in the world would typing a key throw an IOException. I have no idea.
 		}
 	}
@@ -154,7 +154,7 @@ public class ScreenBase extends GuiScreen {
 		try {
 			super.mouseClicked(paramInt1, paramInt2, paramInt3);
 		} catch (IOException e) {
-			Logger.warning("Um. the mouseClicked method threw an IOException. Why? I don't know.");
+			Log.warn("Um. the mouseClicked method threw an IOException. Why? I don't know.");
 			e.printStackTrace();// Why in the world would typing a key throw an IOException. I have no idea.
 		}
 	}
@@ -517,7 +517,7 @@ public class ScreenBase extends GuiScreen {
 			super.mouseClicked(this.guiLeft + this.mouseX, this.guiTop
 					+ this.mouseY, paramInt);
 		} catch (IOException e) {
-			Logger.warning("Um. the mouseClicked method threw an IOException. Why? I don't know.");
+			Log.warn("Um. the mouseClicked method threw an IOException. Why? I don't know.");
 			e.printStackTrace();// Why in the world would typing a key throw an IOException. I have no idea.
 		}
 	}

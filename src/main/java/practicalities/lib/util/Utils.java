@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -55,6 +56,10 @@ public class Utils {
 	}
 	
 	/* ITEM UTILS */
+	
+	public static ItemStack returnItem(ItemStack stack) {
+		return (stack == null || stack.stackSize <= 0)? null : stack.copy();
+	}
 	
 	public static boolean dropItemStackIntoWorld(ItemStack stack, World world, double x, double y, double z) {
 
@@ -109,4 +114,8 @@ public class Utils {
         return player.worldObj.isRemote ? getBlockReachDistance_client() :
                 player instanceof EntityPlayerMP ? getBlockReachDistance_server((EntityPlayerMP) player) : 5D;
     }
+
+	public static AxisAlignedBB inBlockSpace(BlockPos pos) {
+		return AxisAlignedBB.fromBounds(pos.getX(), pos.getY(), pos.getZ(), pos.getX()+1, pos.getY()+1, pos.getZ()+1);
+	}
 }

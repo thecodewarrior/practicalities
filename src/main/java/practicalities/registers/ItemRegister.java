@@ -12,7 +12,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import practicalities.Logger;
+import practicalities.Log;
 import practicalities.PracticalitiesMod;
 import practicalities.items.ItemBase;
 import practicalities.items.ItemCraftingPiece;
@@ -71,7 +71,7 @@ public class ItemRegister {
 
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders() {
-		Logger.info("Registering Item Renderers");
+		Log.info("Registering Item Renderers");
 
 		for (int i = 0; i < craftingPieces.subItemList.size(); i++) {
 			registerRender(craftingPieces, i, true);
@@ -95,7 +95,7 @@ public class ItemRegister {
 		String name = item.getUnlocalizedName(new ItemStack(item, 1, meta)).substring(5);
 		String resourceLocation = PracticalitiesMod.MODID + ":" + name;
 		
-		Logger.info("    %s", name);
+		Log.info("    %s", name);
 
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, meta,
 				new ModelResourceLocation(resourceLocation, "inventory"));
@@ -108,7 +108,7 @@ public class ItemRegister {
 
 	@SideOnly(Side.CLIENT)
 	private static void registerRender(ItemBase item) {
-		Logger.info("    %s", item.getUnlocalizedName().substring(5));
+		Log.info("    %s", item.getUnlocalizedName().substring(5));
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, (ItemMeshDefinition) item);
 	}
 	

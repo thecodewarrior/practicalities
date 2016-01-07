@@ -10,7 +10,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import practicalities.Logger;
+import practicalities.Log;
+import practicalities.lib.util.Utils;
 
 public class DropCapture {
 
@@ -49,10 +50,7 @@ public class DropCapture {
 	}
 
 	public CaptureContext start(BlockPos pos) {
-		return start(AxisAlignedBB.fromBounds(
-				pos.getX(),     pos.getY(),     pos.getZ(),
-				pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1
-			));
+		return start(Utils.inBlockSpace(pos));
 	}
 
 	@SubscribeEvent

@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 
-import practicalities.Logger;
+import practicalities.Log;
 
 public class AdvancedLangLoader {
 
@@ -35,7 +35,7 @@ public class AdvancedLangLoader {
 					if(variables.containsKey(name)) {
 						return variables.get(name);
 					}
-					Logger.error("[Advanced Lang Loader] Variable not found: %s", name);
+					Log.error("[Advanced Lang Loader] Variable not found: %s", name);
 					return "!!VAR_NOT_FOUND(" + name + ")!!";
 				}
 			};
@@ -88,7 +88,7 @@ public class AdvancedLangLoader {
 					if(isAddingVars) {
 						isAddingVars = false;
 					} else if(region.isEmpty()) {
-						Logger.error("[Advanced Lang Loader] Ignoring unexpected close bracket: line %d", lineNum);
+						Log.error("[Advanced Lang Loader] Ignoring unexpected close bracket: line %d", lineNum);
 					} else {
 						region.pop();
 					}
@@ -98,7 +98,7 @@ public class AdvancedLangLoader {
 				if(isAddingVars) {
 					String[] parts = line.split("=", 2);
 					if(parts.length < 2) {
-						Logger.error("[Advanced Lang Loader] Invalid variable declaration, '=' not found: line %d", lineNum);
+						Log.error("[Advanced Lang Loader] Invalid variable declaration, '=' not found: line %d", lineNum);
 					} else {
 						variables.put(parts[0], parts[1]);
 					}

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.util.StatCollector;
-import practicalities.Logger;
+import practicalities.Log;
 import practicalities.book.gui.GuidePage;
 import practicalities.book.gui.page.PageEntryList;
 import practicalities.lib.client.gui.ScreenBase;
@@ -77,7 +77,7 @@ public class GuideStateManager {
 	}
 	
 	public void goToEntryList(String name) {
-		Logger.info("NAME: %s", name);
+		Log.info("NAME: %s", name);
 		
 		if(name != null) {
 			newPage = entryLists.get(name);
