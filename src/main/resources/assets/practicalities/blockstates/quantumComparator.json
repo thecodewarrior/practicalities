@@ -1,17 +1,28 @@
 {
-    "variants": {
-        "facing=down,powered=true": { "model": "piston_normal", "x": 90 },
-        "facing=up,powered=true": { "model": "piston_normal", "x": 270 },
-        "facing=north,powered=true": { "model": "piston_normal" },
-        "facing=south,powered=true": { "model": "piston_normal", "y": 180 },
-        "facing=west,powered=true": { "model": "piston_normal", "y": 270 },
-        "facing=east,powered=true": { "model": "piston_normal", "y": 90 },
-		
-        "facing=down,powered=false": { "model": "piston_normal", "x": 90 },
-        "facing=up,powered=false": { "model": "piston_normal", "x": 270 },
-        "facing=north,powered=false": { "model": "piston_normal" },
-        "facing=south,powered=false": { "model": "piston_normal", "y": 180 },
-        "facing=west,powered=false": { "model": "piston_normal", "y": 270 },
-        "facing=east,powered=false": { "model": "piston_normal", "y": 90 }
-    }
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+            "side":  "practicalities:blocks/comparator_side",
+            "front": "practicalities:blocks/comparator_front",
+            "back":  "practicalities:blocks/comparator_back"
+        },
+		"model": "practicalities:comparator"
+    },
+	"variants": {
+		"facing": {
+	        "down":  { "x": 90 },
+	        "up":    { "x": 270 },
+	        "north": { },
+	        "south": { "y": 180 },
+	        "west":  { "y": 270 },
+	        "east":  { "y": 90 }
+		},
+		"nothing": {
+			"true": {},
+			"false": {}
+		},
+		"inventory": {
+			"x": 270
+		}
+	}
 }

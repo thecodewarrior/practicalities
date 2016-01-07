@@ -23,10 +23,15 @@ import practicalities.quantumNetwork.QuantumRegistry;
 
 public class BlockQuantumInterface extends BlockBase implements IPistonListener, IQuantumBindable {
 
-	public static final PropertyBool NOTHING = PropertyBool.create("powered");
+	public static final PropertyBool NOTHING = PropertyBool.create("nothing");
 	
 	public BlockQuantumInterface() {
 		super(Material.rock, "quantumInterface", null);
+	}
+	
+	@Override
+	public boolean isOpaqueCube() {
+		return false;
 	}
 	
 	@Override

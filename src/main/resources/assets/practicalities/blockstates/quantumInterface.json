@@ -7,9 +7,12 @@
 		"model": "practicalities:quantumBinding.obj"
     },
 	"variants": {
-        "normal": [{
-
-        }],
+        "nothing=false": [{
+			
+		}],
+        "nothing=false": [{
+			
+		}],
         "inventory": [{
 
         }]

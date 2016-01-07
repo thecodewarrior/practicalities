@@ -11,7 +11,7 @@ public class Log {
 	private static final Logger logger;
 
 	static {
-		logger = LogManager.getLogger("OpenMods");
+		logger = LogManager.getLogger("Practicalities");
 	}
 
 	private static final Throwable stackInfo = new Throwable();
