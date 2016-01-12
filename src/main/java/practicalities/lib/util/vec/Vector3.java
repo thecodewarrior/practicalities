@@ -11,6 +11,7 @@ import org.lwjgl.util.vector.Vector4f;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Vec3;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -62,6 +63,12 @@ public class Vector3
         z = coord.getZ();
     }
 
+    public Vector3(EnumFacing facing) {
+    	x = facing.getFrontOffsetX();
+    	y = facing.getFrontOffsetY();
+    	z = facing.getFrontOffsetZ();
+    }
+    
     public Vector3 copy() {
         return new Vector3(this);
     }

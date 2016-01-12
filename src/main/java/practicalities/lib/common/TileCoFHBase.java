@@ -22,10 +22,6 @@ public abstract class TileCoFHBase extends TileEntity {
 		}
 	}
 
-	public abstract String getName();
-
-	public abstract int getType();
-
 	public void blockBroken() {
 
 	}
