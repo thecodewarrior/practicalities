@@ -214,21 +214,22 @@ public class GuiHelper {
 	
 	public void drawColoredRect(int x1, int y1, int x2, int y2, int color) {
 		Color c = Color.rgba(color);
-		drawColoredRect(x1, y1, x2, y2, c.r, c.g, c.b, c.a);
+		drawColoredRect(x1, y1, x2, y2, (float)c.r, (float)c.g, (float)c.b, (float)c.a);
 	}
 	
-	public void drawColoredRect(int x1, int y1, int x2, int y2, double r, double g, double b, double a) {
-		GL11.glColor4d(r, g, b, a);
+	public void drawColoredRect(int left, int top, int right, int bottom, float r, float g, float b, float a) {
 		GlStateManager.enableBlend();
 		GlStateManager.disableTexture2D();
-		GL11.glBegin(GL11.GL_QUADS);
 		
-		GL11.glVertex2d(x1, y1);
-		GL11.glVertex2d(x1, y2);
-		GL11.glVertex2d(x2, y2);
-		GL11.glVertex2d(x2, y1);
-		
-		GL11.glEnd();
+		Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        worldrenderer.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        worldrenderer.pos(right, top, this.zLevel).color(r, g, b, a).endVertex();
+        worldrenderer.pos(left, top, this.zLevel).color(r, g, b, a).endVertex();
+        worldrenderer.pos(left, bottom, this.zLevel).color(r, g, b, a).endVertex();
+        worldrenderer.pos(right, bottom, this.zLevel).color(r, g, b, a).endVertex();
+        tessellator.draw();
+        
 		GlStateManager.enableTexture2D();
 	}
 	

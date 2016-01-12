@@ -84,7 +84,7 @@ public class GuideEntry extends GuiElement {
 			double p = h.tickAnimate(animateStart, 5);
 			h.loadInterpolationFraction(Math.min(p, 1));
 			
-			h.drawColoredRect(posX+h.intr(mouseEnterX, 0), posY, posX+ h.intr(mouseEnterX, sizeX), posY+sizeY, 0,0,0, h.intr(0, 0.1));
+			h.drawColoredRect(posX+h.intr(mouseEnterX, 0), posY, posX+ h.intr(mouseEnterX, sizeX), posY+sizeY, 0,0,0, (float)h.intr(0, 0.1));
 		}
 	}
 	
