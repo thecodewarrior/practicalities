@@ -2,26 +2,26 @@ package practicalities.registers;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import practicalities.Logger;
 import practicalities.PracticalitiesMod;
+import practicalities.blocks.BlockLaserEmmiter;
 
 public final class BlockRegister {
 	
+	public static Block laserEmitter;
 	
 	public static void init(){
+		laserEmitter = new BlockLaserEmmiter();
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public static void registerRenders(){
 		
-		
-		Logger.info("Registering Blocks");
+		Logger.info("Registering Block Renderers");
 	}
 	
 	@SideOnly(Side.CLIENT)
