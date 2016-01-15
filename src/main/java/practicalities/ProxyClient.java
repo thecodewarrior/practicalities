@@ -9,9 +9,12 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringTranslate;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import practicalities.lib.util.AdvancedLangLoader;
-import org.apache.commons.io.Charsets;
-import org.apache.commons.io.IOUtils;
+import practicalities.lib.util.track.Tracker;
+import practicalities.lib.util.track.TrackerClient;
 import practicalities.registers.BlockRegister;
 import practicalities.registers.GuideRegister;
 import practicalities.registers.ItemRegister;
@@ -22,6 +25,13 @@ public class ProxyClient extends ProxyCommon implements IResourceManagerReloadLi
 	public void preInit() {
 		super.preInit();
 		registerRenders();
+		
+	}
+	
+	@Override
+	public void registerTickHandlers() {
+		super.registerTickHandlers();
+		MinecraftForge.EVENT_BUS.register(trackerClient);
 	}
 	
 	@Override

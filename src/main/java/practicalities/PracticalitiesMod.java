@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import practicalities.network.NetHandler;
 import practicalities.registers.GuiHandler;
 import practicalities.registers.ItemRegister;
 
@@ -34,8 +35,9 @@ public class PracticalitiesMod {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		proxy.preInit();
 		ConfigMan.init(new Configuration(event.getSuggestedConfigurationFile()));
+		proxy.preInit();
+		NetHandler.init();
 	}
 
 	@EventHandler
