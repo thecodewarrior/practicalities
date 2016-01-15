@@ -8,15 +8,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import practicalities.items.netherbane.EntityNetherbane;
-import practicalities.lib.util.track.Tracker;
-import practicalities.lib.util.track.TrackerClient;
-import practicalities.lib.util.track.TrackerRelease;
-import practicalities.lib.util.track.TrackerServer;
 import practicalities.registers.BlockRegister;
 import practicalities.registers.ItemRegister;
 import practicalities.registers.RecipeRegister;
@@ -26,9 +18,6 @@ public class ProxyCommon {
 	public void preInit() {
 		ItemRegister.init();
 		BlockRegister.init();
-		if(!ConfigMan.isDev) {
-			trackerClient = trackerServer = new TrackerRelease();
-		}
 	}
 
 	public void init() {
@@ -88,23 +77,6 @@ public class ProxyCommon {
 				event.setCanceled(true);
 				
 			}
-		}
-	}
-	
-	public Tracker trackerClient = new TrackerClient();
-	public Tracker trackerServer = new TrackerServer();
-	
-	int timer = 20;
-	
-	@SubscribeEvent
-	public void onTick(TickEvent.WorldTickEvent evt) {
-		if(evt.phase == Phase.END) {
-			if(timer == 0) {
-				timer = 100;
-				trackerClient.clear();
-				trackerServer.clear();
-			}
-			timer--;
 		}
 	}
 }

@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Level;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.relauncher.Side;
+import practicalities.lib.util.track.TrackerManager;
 
 public class Logger {
 
@@ -41,9 +42,9 @@ public class Logger {
 		if(!ConfigMan.isDev)
 			throw new UnsupportedOperationException("Practicalities: Tried to call Logger.track outside of a dev environment! This is just plain bad!");
 		if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-			PracticalitiesMod.proxy.trackerServer.track(name, String.format(format, data));
+			TrackerManager.server.track(name, String.format(format, data));
 		} else {
-			PracticalitiesMod.proxy.trackerClient.track(name, String.format(format, data));
+			TrackerManager.client.track(name, String.format(format, data));
 		}
 	}
 }

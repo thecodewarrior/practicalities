@@ -31,7 +31,6 @@ public class ProxyClient extends ProxyCommon implements IResourceManagerReloadLi
 	@Override
 	public void registerTickHandlers() {
 		super.registerTickHandlers();
-		MinecraftForge.EVENT_BUS.register(trackerClient);
 	}
 	
 	@Override

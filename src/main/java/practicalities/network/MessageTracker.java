@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import practicalities.Logger;
 import practicalities.PracticalitiesMod;
 import practicalities.lib.util.track.TrackerClient;
+import practicalities.lib.util.track.TrackerManager;
 
 public class MessageTracker implements IMessage, IMessageHandler<MessageTracker, IMessage>{
 	
@@ -26,7 +27,7 @@ public class MessageTracker implements IMessage, IMessageHandler<MessageTracker,
 	public IMessage onMessage(MessageTracker message, MessageContext ctx) {
 		IThreadListener thread = (IThreadListener) Minecraft.getMinecraft();
 		thread.addScheduledTask( ()->{
-				( (TrackerClient)PracticalitiesMod.proxy.trackerClient ).trackPacket(message.key, message.value);
+				TrackerManager.client.trackPacket(message.key, message.value);
 			});
 		return null;
 	}
