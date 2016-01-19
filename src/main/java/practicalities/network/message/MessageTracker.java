@@ -1,4 +1,4 @@
-package practicalities.network;
+package practicalities.network.message;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

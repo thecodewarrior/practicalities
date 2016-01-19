@@ -3,8 +3,8 @@ package practicalities.lib.util.track;
 import java.util.HashMap;
 import java.util.Map;
 
-import practicalities.network.MessageTracker;
 import practicalities.network.NetHandler;
+import practicalities.network.message.MessageTracker;
 
 public class TrackerServer extends Tracker {
 

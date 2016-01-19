@@ -9,12 +9,10 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringTranslate;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import practicalities.lib.util.AdvancedLangLoader;
-import practicalities.lib.util.track.Tracker;
-import practicalities.lib.util.track.TrackerClient;
 import practicalities.registers.BlockRegister;
 import practicalities.registers.GuideRegister;
 import practicalities.registers.ItemRegister;
@@ -42,9 +40,19 @@ public class ProxyClient extends ProxyCommon implements IResourceManagerReloadLi
 	
 	@Override
 	public void registerRenders() {
+		OBJLoader.instance.addDomain(PracticalitiesMod.MODID);
 		ItemRegister.registerRenders();
 		BlockRegister.registerRenders();
 	}
+	
+//	@SubscribeEvent
+//    public void onModelBakeEvent(ModelBakeEvent event) {
+//        Object object =  event.modelRegistry.getObject(LaserModel.resourceLocation);
+//        if (object != null) {
+//            ExampleISBM customModel = new ExampleISBM();
+//            event.modelRegistry.putObject(ExampleISBM.modelResourceLocation, customModel);
+//        }
+//    }
 
 	@Override
 	public void onResourceManagerReload(IResourceManager resourceManager) {

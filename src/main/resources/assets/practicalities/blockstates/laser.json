@@ -1,0 +1,43 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "custom": { "flip-v": true },
+	"model": "practicalities:crystal.obj",
+	"textures": {
+	  "#tex": "practicalities:blocks/crystal/off"
+	}
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+	
+	"powered": {
+		"true":{
+			"textures": {
+				"#tex": "practicalities:blocks/crystal/on"
+			}
+		},
+		"false":{}
+	},
+	
+	"facing": {
+		"north": {},
+		"south": {},
+		"west": {},
+		"east": {},
+		"up": {},
+		"down": {}
+	},
+	
+	"attached": {
+		"north": {},
+		"south": {"y": 180},
+		"west": {"y": 270},
+		"east": {"y": 90},
+		"up": {"x": -90},
+		"down": {"x": 90}
+	}
+	
+	
+  }
+}

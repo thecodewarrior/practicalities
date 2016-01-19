@@ -51,9 +51,18 @@ public class TrackerClient extends Tracker {
 		keys.addAll(tracks.keySet());
 		keys.addAll(packetTracks.keySet());
 		
+		if(keys.size() == 0)
+			return;
+		
 		event.left.add("KEY: §4SERVER §9CLIENT");
 		for(String key : keys) {
-			event.left.add(key + ": §4" + packetTracks.get(key) + " §9" + tracks.get(key));
+			String server = packetTracks.get(key);
+			String client = tracks.get(key);
+			
+			boolean equal = server == null ? client.equals(server) : server.equals(client);
+			String sep = equal ? " " : "§d!!";
+			
+			event.left.add("    " + key + ":" + sep + "§4" + server + " §9" + client);
 		}
 	}
 }

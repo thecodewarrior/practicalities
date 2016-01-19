@@ -323,6 +323,10 @@ public class Vector3
         return new Vec3(x, y, z);
     }
 
+    public BlockPos blockPos() {
+    	return new BlockPos(x, y, z);
+    }
+    
     public double angle(Vector3 vec) {
         return Math.acos(copy().normalize().dotProduct(vec.copy().normalize()));
     }

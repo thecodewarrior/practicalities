@@ -11,12 +11,17 @@ public class TrackerManager {
 	public static TrackerServer server;
 	public static TrackerClient client;
 	
-	public void init() {
+	private static TrackerManager instance;
+	
+	public static void init() {
 		if(ConfigMan.isDev) {
+			if(instance == null)
+				instance = new TrackerManager();
+			
 			server = new TrackerServer();
 			client = new TrackerClient();
 			
-			MinecraftForge.EVENT_BUS.register(this);
+			MinecraftForge.EVENT_BUS.register(instance);
 			MinecraftForge.EVENT_BUS.register(client);
 		}
 	}
